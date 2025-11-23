@@ -67,7 +67,7 @@ class DataManager:
                 if field not in data:
                     data[field] = default_value
                     data_updated = True
-            
+            '''
             # 检查并清理无效的QQ绑定
             qq_number = data.get("qq", "")
             bind_time = data.get("bind_time", 0)
@@ -76,7 +76,7 @@ class DataManager:
             if (not qq_number or not qq_number.strip()) and not bind_time:
                 invalid_bindings.append(player_name)
                 self.logger.warning(f"发现无效绑定：玩家 {player_name} 的QQ号为空且无绑定历史，将被清理")
-        
+            '''
         # 清理无效绑定
         for player_name in invalid_bindings:
             del self._binding_data[player_name]
@@ -102,7 +102,7 @@ class DataManager:
                 json.dump(self._binding_data, f, indent=2, ensure_ascii=False)
             
             # 原子性替换文件
-            temp_file.replace(self.binding_file)
+            temp_file.替换(self.binding_file)
             
         except Exception as e:
             self.logger.error(f"保存QQ绑定数据失败: {e}")
